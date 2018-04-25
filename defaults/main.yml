@@ -1,0 +1,14 @@
+---
+jenkins_java: /usr/bin/java
+jenkins_java_args: "-Djava.awt.headless=true"
+jenkins_pidfile: /var/run/jenkins/jenkins.pid
+jenkins_user: jenkins
+jenkins_group: jenkins
+jenkins_home: /var/lib/jenkins
+jenkins_log: daemon.info
+jenkins_max_fd: 8192
+jenkins_umask: "027"
+jenkins_http_host: 0.0.0.0
+jenkins_http_port: 8080
+jenkins_prefix: /
+jenkins_args: "--webroot=/var/cache/jenkins/war --prefix=$PREFIX --httpPort=$HTTP_PORT --httpListenAddress=$HTTP_HOST"
