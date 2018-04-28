@@ -1,0 +1,32 @@
+---
+- name: Add Jenkins APT key
+  apt_key:
+    url: https://pkg.jenkins.io/debian/jenkins.io.key
+
+- name: Add Jenkins APT repository
+  apt_repository:
+    repo: deb http://pkg.jenkins.io/debian-stable binary/
+    filename: jenkins
+    update_cache: true
+
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - openjdk-8-jre-headless
+    - jenkins
+  notify: Restart Jenkins
+
+- name: Create configuration file
+  template:
+    src: jenkins.j2
+    dest: /etc/default/jenkins
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Jenkins
+
+- name: Enable service
+  service:
+    name: jenkins.service
+    enabled: true
