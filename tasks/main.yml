@@ -11,10 +11,9 @@
 
 - name: Install required packages
   apt:
-    name: "{{ item }}"
-  with_items:
-    - openjdk-8-jre-headless
-    - jenkins
+    name:
+      - openjdk-8-jre-headless
+      - jenkins
   notify: Restart Jenkins
 
 - name: Create configuration file
