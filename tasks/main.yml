@@ -1,18 +1,18 @@
 ---
 - name: Add Jenkins APT key
   apt_key:
-    url: https://pkg.jenkins.io/debian/jenkins.io.key
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
 
 - name: Add Jenkins APT repository
   apt_repository:
-    repo: deb http://pkg.jenkins.io/debian-stable binary/
+    repo: deb https://pkg.jenkins.io/debian-stable binary/
     filename: jenkins
     update_cache: true
 
 - name: Install required packages
   apt:
     name:
-      - openjdk-8-jre-headless
+      - default-jre-headless
       - jenkins
   notify: Restart Jenkins
 
